@@ -1,0 +1,279 @@
+/* Стили для hero-секции */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Фоновые эффекты */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -10;
+}
+
+.hero-radial-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(243, 201, 121, 0.15) 0%, transparent 70%);
+}
+
+.hero-linear-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KICA8cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgIDxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGM0M5NzkiIHN0cm9rZS13aWR0aD0iMC4yIi8+CiAgPC9wYXR0ZXJuPgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=');
+  opacity: 0.3;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(247, 147, 26, 0.2);
+}
+
+/* Основной контент */
+.hero-container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fade-in 1s ease-in-out;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: FiraCode;
+}
+
+.hero-title-gold {
+  background: linear-gradient(to right, #ffb74d, var(--color-primary), #ffb74d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Карточка с информацией */
+.hero-info-card {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(247, 147, 26, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-info-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-info-label {
+  color: rgba(255, 255, 255, 0.6);
+  width: 7rem;
+}
+
+.hero-info-value {
+  font-weight: 500;
+}
+
+.hero-info-value.gold {
+  color: var(--color-primary);
+}
+
+.contract-address {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(247, 147, 26, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  max-width: 20rem;
+  transition: var(--transition-default);
+}
+
+.contract-address:hover {
+  border-color: rgba(247, 147, 26, 0.4);
+}
+
+.contract-code {
+  font-size: 0.875rem;
+  font-family: FiraCode;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copy-button {
+  color: var(--color-primary);
+  transition: var(--transition-default);
+  padding: 0.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.copy-button:hover {
+  color: rgba(247, 147, 26, 0.8);
+}
+
+/* Кнопки */
+.hero-buttons {
+  padding-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-glow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: #000;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 0 25px rgba(247, 147, 26, 0.5);
+  transition: var(--transition-default);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 35px rgba(247, 147, 26, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: var(--transition-default);
+}
+
+.btn-outline:hover {
+  border-color: rgba(247, 147, 26, 0.5);
+  background-color: rgba(247, 147, 26, 0.05);
+  transform: translateY(-2px);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Анимации */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Светящийся текст */
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Медиа-запросы */
+@media (min-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .bitcoin-model-container {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* Сферические блики на фоне */
+.blur-sphere {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(247, 147, 26, 0.05);
+  filter: blur(50px);
+}
+
+.blur-sphere-1 {
+  width: 20rem;
+  height: 20rem;
+  bottom: -10rem;
+  right: -5rem;
+}
+
+.blur-sphere-2 {
+  width: 20rem;
+  height: 20rem;
+  top: -10rem;
+  left: -5rem;
+} 

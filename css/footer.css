@@ -1,0 +1,184 @@
+/* Стили для подвала сайта */
+
+.footer {
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  background: linear-gradient(to bottom, #080808, #000000);
+  overflow: hidden;
+}
+
+.social-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #0a0a0a;
+  padding: 1rem 0;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.5rem;
+  transition: var(--transition-default);
+}
+
+.social-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-gold {
+  color: var(--color-primary);
+}
+
+.footer-token {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+}
+
+.footer-description {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+.newsletter {
+    display: none;
+  margin-bottom: 2rem;
+}
+
+.newsletter-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.newsletter-form {
+  display: flex;
+}
+
+.newsletter-input {
+  background-color: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  color: white;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.newsletter-button {
+  background-color: var(--color-primary);
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  transition: var(--transition-default);
+}
+
+.newsletter-button:hover {
+  background-color: #e68a19;
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.footer-nav-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-nav-title {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: var(--transition-default);
+}
+
+.footer-nav-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-disclaimer {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.footer-disclaimer-text {
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #777777;
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  color: #777777;
+}
+
+/* Медиа-запросы */
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 4fr 8fr;
+  }
+  
+  .footer-nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} 

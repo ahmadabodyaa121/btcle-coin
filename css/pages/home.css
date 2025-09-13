@@ -1,0 +1,617 @@
+/* Стили для главной страницы */
+
+/* Героический раздел */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Контейнер контента */
+.hero-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Заголовки */
+.hero-title {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #292929;
+
+  line-height: 1.1;
+  background: #C5B483;
+  background-clip: text;
+
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #000;
+  max-width: 600px;
+  white-space: nowrap;
+}
+
+/* Кнопка призыва к действию */
+.hero-cta {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffd700 0%, #f8a100 100%);
+  color: #000000;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  margin-top: 1rem;
+}
+
+.hero-cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 7px 25px rgba(255, 215, 0, 0.7);
+}
+
+.hero-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Контейнер для 3D-модели Bitcoin */
+.bitcoin-model-container {
+  position: absolute;
+  right: 5%;
+  height: 400px;
+  width: 400px;
+  z-index: 3;
+  animation: float 6s infinite ease-in-out;
+}
+
+@media (max-width: 1200px) {
+  .bitcoin-model-container {
+    position: relative;
+    right: auto;
+    margin: 2rem auto;
+    height: 300px;
+    width: 300px;
+  }
+  
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem;
+    height: fit-content;
+  }
+
+  .core-tech-section {
+    padding: 20px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    white-space: normal;
+  }
+  
+  .bitcoin-model-container {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+/* Плавающие частицы */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 
+              0 0 20px rgba(255, 215, 0, 0.3),
+              0 0 30px rgba(255, 215, 0, 0.1);
+  z-index: 2;
+  pointer-events: none;
+  animation: float-particle 8s infinite ease-in-out;
+}
+
+/* Анимации */
+@keyframes title-glow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+/* О разделе */
+.about-section {
+  padding: 5rem 2rem;
+  background-color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-title {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 10px;
+  padding: 2rem;
+  flex: 1 1 300px;
+  max-width: 350px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.about-card-title {
+  font-size: 1.5rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.about-card-content {
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+/* Whitepaper и Marketing Plan */
+.whitepaper-section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.whitepaper-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.whitepaper-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.whitepaper-title {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.whitepaper-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.whitepaper-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .whitepaper-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .whitepaper-content {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.whitepaper-card {
+  background: rgba(20, 20, 20, 0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.whitepaper-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(247, 147, 26, 0.3);
+  box-shadow: 0 10px 30px rgba(247, 147, 26, 0.1);
+}
+
+.whitepaper-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.whitepaper-card:hover .whitepaper-card-bg {
+  opacity: 0.25;
+}
+
+.whitepaper-card h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.whitepaper-card p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.whitepaper-download {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.download-button {
+  background-color: var(--color-primary);
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 20px rgba(247, 147, 26, 0.2);
+  transition: all 0.3s ease;
+}
+
+.download-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(247, 147, 26, 0.3);
+}
+
+/* Сетка на фоне */
+.network-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Маркетинговый план */
+.marketing-plan {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.marketing-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.marketing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.marketing-title {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.marketing-goal {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(247, 147, 26, 0.3);
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.strategy-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.strategy-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(247, 147, 26, 0), rgba(247, 147, 26, 0.7), rgba(247, 147, 26, 0));
+  transform: translateX(-50%);
+}
+
+.strategy-line::before, 
+.strategy-line::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  transform: translateX(-50%);
+}
+
+.strategy-line::before {
+  top: 0;
+}
+
+.strategy-line::after {
+  bottom: 0;
+}
+
+.strategy-item {
+  display: flex;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.strategy-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.strategy-item:nth-child(odd) {
+  justify-content: flex-end;
+}
+
+.strategy-item-content {
+  width: 90%;
+  max-width: 500px;
+  padding: 1.5rem;
+  background: rgba(20, 20, 20, 0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.strategy-item:nth-child(odd) .strategy-item-content {
+  margin-right: calc(50% + 2rem);
+}
+
+.strategy-item:nth-child(even) .strategy-item-content {
+  margin-left: calc(50% + 2rem);
+}
+
+.strategy-item-content::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 2rem;
+  height: 2px;
+  background-color: rgba(247, 147, 26, 0.7);
+}
+
+.strategy-item:nth-child(odd) .strategy-item-content::before {
+  right: -2rem;
+}
+
+.strategy-item:nth-child(even) .strategy-item-content::before {
+  left: -2rem;
+}
+
+.strategy-item-content h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.strategy-item-content p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.strategy-item-content ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.strategy-item-content li {
+  background: rgba(247, 147, 26, 0.2);
+  color: var(--color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .strategy-line {
+    left: 2rem;
+  }
+  
+  .strategy-item {
+    justify-content: flex-start;
+  }
+  
+  .strategy-item:nth-child(odd) {
+    justify-content: flex-start;
+  }
+  
+  .strategy-item-content {
+    width: auto;
+  }
+  
+  .strategy-item:nth-child(odd) .strategy-item-content,
+  .strategy-item:nth-child(even) .strategy-item-content {
+    margin-left: 3rem;
+    margin-right: 1rem;
+  }
+  
+  .strategy-item-content::before {
+    width: 1rem;
+  }
+  
+  .strategy-item:nth-child(odd) .strategy-item-content::before,
+  .strategy-item:nth-child(even) .strategy-item-content::before {
+    left: -1rem;
+  }
+}
+
+/* Анимации для элементов */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(247, 147, 26, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(247, 147, 26, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(247, 147, 26, 0);
+  }
+}
+
+@keyframes networkFlow {
+  0% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.05;
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.network-background {
+  animation: networkFlow 8s infinite;
+}
+
+/* Остальные стили для главной страницы... */ 

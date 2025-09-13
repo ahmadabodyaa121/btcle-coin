@@ -1,0 +1,594 @@
+/* Стили для страницы Outreach */
+
+/* Переменные фона из whitepaper.css */
+:root {
+  --dark-bg-1: #0B0B0F;
+  --dark-bg-2: #13131A;
+  --accent-gold: #C5B483;
+  --accent-blue: #2E7DFF;
+  --text-light: #EAEAEA;
+  --text-medium: #A0A0B0;
+  --text-dark: #606070;
+}
+
+/* Основные контейнеры */
+.outreach-container {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  color: var(--text-light);
+  background-color: var(--dark-bg-1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Фон страницы - стили из whitepaper.css */
+.outreach-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 4rem 4rem; /* Размер ячейки сетки */
+  z-index: -2;
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 20%, #000000a1 100%);
+}
+
+.outreach-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(46, 125, 255, 0.1) 0%, transparent 20%),
+              radial-gradient(circle at 90% 80%, rgba(247, 206, 104, 0.1) 0%, transparent 25%);
+  z-index: -3;
+  opacity: 0.8;
+}
+
+@keyframes bg-grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+/* Герой-секция */
+.hero-section {
+  position: relative;
+  padding: 3rem 0;
+  margin-bottom: 4rem; /* Увеличим отступ */
+  text-align: center;
+  overflow: visible; /* Разрешим частицам выходить */
+}
+
+.hero-content {
+  position: relative;
+  padding: 1rem; /* Уменьшим паддинг */
+  /* Убираем фон, рамку, тень, блюр */
+  /* background: rgba(0, 0, 0, 0.4); */
+  /* backdrop-filter: blur(10px); */
+  /* border-radius: 1rem; */
+  /* border: 1px solid rgba(243, 201, 121, 0.2); */
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
+  z-index: 1;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-content.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-content::before {
+  /* Убираем псевдоэлемент с паттерном */
+  content: none;
+}
+
+.page-title {
+  font-size: 4.5rem; /* Крупнее */
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #f7931a, #fff1dc, #f7931a);
+  -webkit-background-clip: text;
+
+  position: relative;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+}
+
+.page-subtitle {
+  font-size: 1.6rem; /* Крупнее */
+  color: var(--text-medium);
+  max-width: 40rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Частицы */
+.particles {
+  position: absolute;
+  inset: -50px; /* Увеличим область */
+  pointer-events: none;
+  z-index: -1; /* За фон */
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(243, 201, 121, 0.15); /* Менее яркие */
+  animation: float 6s infinite ease-in-out alternate; /* Разнообразим анимацию */
+  box-shadow: 0 0 10px rgba(243, 201, 121, 0.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(15px) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(10px) translateX(-10px) scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+/* Секция Философии маркетинга - интегрируем в поток */
+.marketing-philosophy-section { /* Новый класс для секции */
+  padding: 2.5rem 0;
+  margin-bottom: 4rem; /* Увеличим отступ */
+  /* Убираем стили .card */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 900px; /* Ограничим ширину текста */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marketing-philosophy-section.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem; /* Больше отступ */
+}
+
+.icon-container {
+  width: 3.5rem; /* Крупнее */
+  height: 3.5rem; /* Крупнее */
+  border-radius: 12px; /* Квадратнее */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(247, 147, 26, 0.1); /* Цвет иконки */
+  border: 1px solid rgba(247, 147, 26, 0.3);
+  margin-right: 1.5rem;
+}
+
+.icon-container .icon {
+  width: 28px;
+  height: 28px;
+}
+
+.card-title {
+  font-size: 2rem; /* Крупнее */
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.card-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-medium);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Секция цитаты */
+.quote-box {
+  position: relative;
+  padding: 2rem; /* Больше паддинг */
+  margin: 2.5rem 0; /* Больше отступы */
+  background: linear-gradient(to right, rgba(243, 201, 121, 0.1), rgba(243, 201, 121, 0.02));
+  border-left: 4px solid #f7931a;
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-box::before {
+  content: none;
+  /* Убираем лишний фон/блюр */
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.25rem; /* Крупнее */
+  color: var(--text-light);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Заголовок секции */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0 3rem; /* Больше отступы */
+  gap: 1.5rem;
+}
+
+.divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(243, 201, 121, 0.3), transparent);
+}
+
+.section-title { /* Используется для заголовка секции */
+  font-size: 2rem; /* Крупнее */
+  font-weight: 700;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* Сетка каналов - редизайн */
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Немного меньше мин. ширина */
+  gap: 2rem; /* Больше отступ */
+  margin-bottom: 5rem; /* Больше отступ */
+}
+
+.channel-card {
+  position: relative;
+  padding: 2rem; /* Больше паддинг */
+  border-radius: 12px; /* Скругление */
+  border: 1px solid rgba(243, 201, 121, 0.15); /* Чуть виднее */
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  background-color: rgba(30, 30, 40, 0.3); /* Легкий фон */
+}
+
+.channel-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.channel-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(243, 201, 121, 0.5);
+  background-color: rgba(40, 40, 55, 0.5);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+}
+
+.card-overlay {
+  /* Убираем оверлей */
+  content: none;
+}
+
+/* Переносим .icon-container внутрь .channel-card */
+.channel-card .icon-container {
+  margin-bottom: 1.5rem;
+  background-color: rgba(247, 147, 26, 0.1);
+  border-color: rgba(247, 147, 26, 0.3);
+  transition: all 0.3s ease;
+}
+
+.channel-card:hover .icon-container {
+  background-color: rgba(247, 147, 26, 0.2);
+  border-color: rgba(247, 147, 26, 0.5);
+  transform: scale(1.1);
+}
+
+.channel-title {
+  font-size: 1.4rem; /* Крупнее */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.channel-card:hover .channel-title {
+  color: #f7931a;
+}
+
+.channel-description {
+  color: var(--text-medium);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.channel-card:hover .channel-description {
+  color: var(--text-light);
+}
+
+/* Убираем фоновые градиенты */
+.bg-blue-gradient, .bg-purple-gradient, .bg-green-gradient, .bg-amber-gradient, .bg-indigo-gradient, .bg-red-gradient {
+  background: none;
+}
+
+/* Секция принципов - редизайн */
+.principles-section { /* Новый класс */
+  padding: 2.5rem 0;
+  margin-bottom: 4rem;
+  /* Убираем стили .card */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.principles-section.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.principles-section > .card-header { /* Применяем стили заголовка к секции */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Адаптивнее */
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1100px; /* Ограничим ширину */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.principle-card {
+  padding: 0; /* Убираем паддинг карточки */
+  /* Убираем фон, рамку, тень */
+  /* background: rgba(0, 0, 0, 0.4); */
+  /* backdrop-filter: blur(5px); */
+  /* border-radius: 0.5rem; */
+  /* border: 1px solid rgba(243, 201, 121, 0.1); */
+  transition: all 0.3s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  text-align: center; /* Центрируем контент */
+}
+
+.principle-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.principle-card:hover {
+  transform: scale(1.05) !important; /* Увеличим hover */
+  /* Убираем лишние стили hover */
+  /* border-color: rgba(243, 201, 121, 0.3); */
+  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); */
+}
+
+/* Стилизуем иконку принципа */
+.principle-card .icon-container {
+  margin: 0 auto 1.5rem auto; /* Центрируем и добавляем отступ */
+}
+
+.principle-card:hover .icon-container {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.principle-title {
+  font-size: 1.3rem; /* Чуть крупнее */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #f7931a;
+}
+
+.principle-description {
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+/* Блок резюме - редизайн */
+.summary-box {
+  padding: 2rem 0; /* Вертикальные отступы */
+  /* Убираем фон, рамку */
+  /* background: linear-gradient(to right, rgba(243, 201, 121, 0.05), rgba(243, 201, 121, 0.1), rgba(243, 201, 121, 0.05)); */
+  /* border-radius: 0.5rem; */
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  max-width: 800px; /* Ограничим ширину */
+  margin: 3rem auto 0 auto; /* Отступы */
+  border-top: 1px solid rgba(243, 201, 121, 0.2);
+}
+
+.summary-box::before {
+  /* Убираем блюр */
+  content: none;
+}
+
+.summary-text {
+  font-size: 1.2rem; /* Крупнее */
+  color: var(--text-light);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* Иконки - оставляем как есть */
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  color: #f7931a;
+}
+
+.icon-target { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3C/svg%3E"); }
+.icon-users { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E"); }
+.icon-smartphone { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='14' height='20' x='5' y='2' rx='2' ry='2'/%3E%3Cpath d='M12 18h.01'/%3E%3C/svg%3E"); }
+.icon-speaker { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='16' height='20' x='4' y='2' rx='2' ry='2'/%3E%3Ccircle cx='12' cy='14' r='4'/%3E%3Cpath d='M12 6h.01'/%3E%3C/svg%3E"); }
+.icon-message-square { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E"); }
+.icon-book-open { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E"); }
+.icon-globe { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"); }
+.icon-trending-up { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m23 6-9.5 9.5-5-5L1 18'/%3E%3Cpath d='M17 6h6v6'/%3E%3C/svg%3E"); }
+.icon-award { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='7'/%3E%3Cpath d='M8.21 13.89 7 23l5-3 5 3-1.21-9.12'/%3E%3C/svg%3E"); }
+.icon-shield { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E"); }
+.icon-lightbulb { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E"); }
+.icon-zap { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23f7931a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M13 2 3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E"); }
+
+/* Адаптивность */
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 3.5rem; /* Корректировка */
+  }
+
+  .principles-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Подгонка */
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 3rem; /* Корректировка */
+  }
+
+  .page-subtitle {
+    font-size: 1.3rem; /* Корректировка */
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 4rem 0 2.5rem; /* Корректировка */
+  }
+
+  .divider {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .principles-grid {
+    grid-template-columns: 1fr; /* Одна колонка */
+  }
+  
+  .channels-grid {
+    grid-template-columns: 1fr; /* Одна колонка */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0; /* Убираем паддинг на мобильных */
+  }
+  .page-title {
+    font-size: 2.5rem; /* Корректировка */
+  }
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+  .card-text, .quote-text, .channel-description, .principle-description, .summary-text {
+    font-size: 1.05rem;
+  }
+  .channel-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Анимации */
+/* Оставляем существующий .fade-in-up */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+} 
+
+/* --- Стили для кнопки Домой (скопировано из about.css) --- */
+.home-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(20, 20, 25, 0.7);
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15));
+  border-radius: 50%;
+  color: var(--color-primary);
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.home-button.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.home-button:hover {
+  background: rgba(184, 157, 88, 0.05);
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(184, 157, 88, 0.25);
+  border-color: var(--color-primary);
+}
+
+.home-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-primary);
+  transition: stroke 0.3s ease;
+}
+
+.home-button:hover svg {
+  stroke: #C5B483;
+}
+
+/* Адаптивность для кнопки Home */
+@media (max-width: 768px) {
+  .home-button {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    left: 20px;
+  }
+  .home-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-button {
+    width: 40px;
+    height: 40px;
+    bottom: 15px;
+    left: 15px;
+  }
+  .home-button svg {
+    width: 18px;
+    height: 18px;
+  }
+} 

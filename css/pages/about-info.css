@@ -1,0 +1,448 @@
+/* Стили для страницы About Info - РЕДИЗАЙН */
+
+/* --- Переменные --- */
+
+
+/* --- Общий контейнер и фон --- */
+.about-info-container {
+  padding: 20px 20px 80px; /* Больше отступ сверху */
+  /* تعديل 2 */
+  color: #292929;
+  position: relative;
+  /* تعديل 1 */
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex; /* Центрируем контент */
+  justify-content: center;
+  align-items: flex-start; /* Выравниваем по верху */
+}
+
+/* --- Сложный фон (псевдоэлементы) --- */
+.about-info-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Тонкая сетка */
+  background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), 
+                    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  z-index: -2;
+  opacity: 0.7;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% -10%, black 40%, transparent 80%);
+  animation: bg-grid-subtle-move 60s linear infinite;
+}
+
+.about-info-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Мягкие градиентные пятна */
+  background-color: var(--dark-bg-1);
+  background-image: radial-gradient(circle at 10% 20%, #252530 0%, transparent 30%), radial-gradient(circle at 90% 80%, rgba(46, 125, 255, 0.08) 0%, transparent 35%);
+  z-index: -3;
+  opacity: 0.6;
+  animation: bg-glow-subtle-move 45s ease-in-out infinite alternate;
+}
+
+@keyframes bg-grid-subtle-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 6rem 6rem; }
+}
+
+@keyframes bg-glow-subtle-move {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  100% { transform: translate(20px, -15px) scale(1.1); opacity: 0.8; }
+}
+
+
+/* --- Контентная область --- */
+.about-info-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px; /* Оптимальная ширина для чтения */
+  width: 100%;
+  text-align: center; /* Центрируем заголовок */
+  margin-top: 10vh;
+}
+
+/* --- Заголовок страницы --- */
+.about-info-title {
+  font-size: 3rem; /* Крупнее */
+  font-weight: 400;
+  margin-bottom: 0.5rem; /* Больше отступ */
+  /* تعديل 3 */
+  color: #292929;
+  letter-spacing: 0.02em;
+  opacity: 0; /* For animation */
+  transform: translateY(20px); /* For animation */
+}
+
+.about-info-title .highlight {
+  color:#000;
+  text-shadow: 0 0 20px rgba(184, 157, 88, 0.25);
+}
+
+/* --- Секции контента --- */
+.video-overlay .info-section {
+    margin-top: 30vh;
+}
+
+.info-section {
+  margin-bottom: 3rem;
+  text-align: left; /* Выравниваем текст в секциях по левому краю */
+  /* border-top: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15)); */
+  padding-top: 2.5rem;
+  opacity: 0; /* For animation */
+  transform: translateY(20px); /* For animation */
+}
+
+.info-section:first-of-type {
+    margin-top: 5vh;
+    margin-bottom: 0;
+}
+
+.about-info-content {
+    overflow: hidden;
+}
+
+/* --- Детали токена --- */
+.about-info-container .token-details-section {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.token-details-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Адаптивная сетка */
+  gap: 2rem 2.5rem; /* Промежутки */
+  margin-top: 30vh;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #ffffff; /* Полупрозрачный фон */
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.detail-item:hover {
+  background: rgba(219, 219, 220, 0.6);
+  transform: translateY(-3px);
+}
+
+.detail-icon {
+  color: #000;
+  flex-shrink: 0;
+  background: rgba(184, 157, 88, 0.05);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15));
+}
+
+.detail-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  color: var(--about-info-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Стили для адреса контракта */
+.contract-item {
+  grid-column: 1 / -1; /* Растягиваем на всю ширину */
+}
+
+.contract-value-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contract-address-text {
+  font-family: FiraCode;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copy-button {
+  background: rgba(184, 157, 88, 0.05);
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15));
+  color: var(--color-primary);
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Для тултипа */
+}
+
+.copy-button:hover {
+  background-color: rgba(184, 157, 88, 0.25);
+  border-color: var(--color-primary);
+  color: var(--dark-bg-1);
+}
+
+.copy-button svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px; /* Отступ для тултипа */
+}
+
+.copy-button .copy-tooltip {
+  font-size: 0.8rem;
+}
+
+.copy-button.copied {
+  background-color: var(--color-primary);
+  color: var(--dark-bg-1);
+  border-color: var(--color-primary);
+}
+
+/* --- Секция описания --- */
+.description-section {
+  padding: 2rem; /* Отступы внутри */
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 3rem;
+}
+
+.description-title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.description-title .highlight {
+  text-shadow: 0 0 15px rgba(184, 157, 88, 0.25);
+}
+
+.description-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--about-info-text-secondary);
+  max-width: 650px; /* Ограничиваем ширину текста */
+  margin: 0 auto; /* Центрируем текст */
+  text-align: center;
+}
+
+.description-text strong {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* --- Кнопка Домой --- */
+.home-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(20, 20, 25, 0.7);
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15));
+  border-radius: 50%;
+  color: var(--color-primary);
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bounce эффект */
+  backdrop-filter: blur(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.home-button.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.home-button:hover {
+  background: rgba(184, 157, 88, 0.05);
+  transform: scale(1.1); 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(184, 157, 88, 0.25);
+  border-color: var(--color-primary);
+}
+
+.home-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-primary);
+  transition: stroke 0.3s ease;
+}
+
+.home-button:hover svg {
+  stroke: #C5B483;
+}
+
+/* --- Анимации появления --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in,
+.fade-in-up {
+  opacity: 0; /* Начальное состояние */
+}
+
+.fade-in.visible {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-in-up.visible {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 768px) {
+  .about-info-container {
+    padding-top: 80px;
+  }
+  .about-info-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  .token-details-section {
+     grid-template-columns: 1fr; /* Одна колонка на мобильных */
+     gap: 1.5rem;
+     margin-top: 10vh;
+  }
+  .description-title {
+    font-size: 1.8rem;
+  }
+  .description-text {
+    font-size: 1.05rem;
+  }
+  .video-overlay .info-section {
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-info-container {
+    padding: 60px 15px 60px;
+  }
+  .about-info-title {
+    font-size: 2.2rem;
+  }
+  .token-details-section {
+    padding: 0 0.5rem; /* Уменьшаем боковые паддинги контейнера */
+    gap: 0.8rem; /* Уменьшаем гэп */
+  }
+  .detail-item {
+    padding: 0.8rem 1rem; /* Уменьшаем паддинги элемента */
+    gap: 0.6rem; /* Уменьшаем гэп внутри */
+  }
+  
+  .detail-icon {
+     /* Можно немного уменьшить иконку, если нужно */
+     /* padding: 5px; */
+  }
+  
+  .detail-icon svg {
+    /* width: 16px; */
+    /* height: 16px; */
+  }
+  
+  .detail-label {
+      font-size: 0.7rem;
+  }
+  
+  .detail-value {
+      font-size: 0.9rem;
+  }
+
+  .contract-address-text {
+    font-size: 0.8rem; /* Можно еще уменьшить */
+    /* Можно добавить word-break, если адрес все равно не влезает */
+    /* word-break: break-all; */ 
+  }
+
+  .description-title {
+    font-size: 1.6rem;
+  }
+  
+  .description-text {
+      font-size: 0.9rem;
+      padding: 0.8rem; /* Уменьшаем паддинг */
+  }
+  
+  .home-button {
+      bottom: 15px;
+      left: 15px;
+      width: 40px;
+      height: 40px;
+  }
+  
+  .home-button svg {
+      width: 18px;
+      height: 18px;
+  }
+} 
+
+@media (max-width: 480px) {
+    .contract-address-text {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .detail-item {
+        max-width: 75%;
+    }
+
+    .detail-text {
+        max-width: 82%;
+    }
+
+
+}

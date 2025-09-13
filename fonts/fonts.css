@@ -1,0 +1,45 @@
+/* Файл для подключения шрифтов */
+
+/* --- Новый шрифт Fort Light --- */
+@font-face {
+  font-family: 'Fort';
+  src: url('fonnts.com-Fort_Light.otf') format('opentype');
+  font-weight: 300; /* Предполагаем, что Light = 300 */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter - теперь запасной */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Шрифт для логотипа и заголовков - пока оставим как запасной? или тоже Fort? */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+/* Шрифт для кода и технических деталей */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+/* Настройка основных шрифтов */
+:root {
+  --font-main: 'Fort', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-display: 'Fort', 'Space Grotesk', sans-serif; /* Используем Fort для заголовков */
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+body {
+  font-family: var(--font-main);
+  font-weight: 300; /* Устанавливаем базовый вес для body */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: FiraCode;
+  /* Вес будет наследоваться или устанавливаться отдельно, 
+     браузер попробует сделать faux-bold для Fort */
+}
+
+.font-mono {
+  font-family: FiraCode;
+}
+
+.font-grotesk {
+  font-family: FiraCode;
+} 

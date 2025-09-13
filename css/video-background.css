@@ -1,0 +1,398 @@
+/* Стили для компонента VideoBackground */
+
+.video-background {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #00000005;
+}
+
+/* Полноэкранный видео-контейнер */
+.fullscreen-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-bottom: 5rem;
+}
+
+.video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease;
+}
+
+.video-element.loading {
+  opacity: 0;
+}
+
+.scroll-indicator-container {
+    display: none;
+}
+
+.video-element.loaded {
+  opacity: 1;
+}
+
+/* Добавляем стили для видео после завершения */
+.video-background.video-ended .video-element {
+  /* Плавный переход для трансформации */
+  transition: transform 0.2s ease-out;
+  /* Начальное небольшое увеличение (дублирует JS, но для надежности) */
+  transform: scale(1.05);
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent, rgba(0, 0, 0, 0.7));
+  transition: background 1s ease;
+}
+
+/* Стиль для активного (затемненного) оверлея */
+.video-overlay.overlay-active {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 40%, rgba(0, 0, 0, 0.85));
+}
+
+/* Кнопка управления звуком */
+.sound-toggle-button {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.3));
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: fade-in 0.5s ease forwards;
+  animation-delay: 2s;
+  opacity: 0;
+}
+
+.sound-toggle-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+  border-color: var(--color-primary);
+}
+
+.video-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.home-video-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  animation: fade-in 1s forwards;
+  animation-delay: 0.5s;
+  padding-bottom: 8rem;
+  position: relative;
+  z-index: 10;
+}
+
+.home-video-title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  max-width: 65rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.home-video-subtitle {
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 40rem;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.home-video-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: black;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 20px var(--color-primary, rgba(184, 157, 88, 0.2));
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Медиа-запросы */
+@media (min-width: 640px) {
+  .home-video-buttons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-video-title {
+    font-size: 4.5rem;
+  }
+  
+  .home-video-subtitle {
+    font-size: 1.875rem;
+  }
+}
+
+/* --- Стили для добавленного контента на главной странице --- */
+
+/* Общий контейнер для деталей токена на главной */
+.home-token-details {
+  max-width: 700px;
+  margin: 3rem auto 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Класс для запуска анимации появления */
+.home-token-details.reveal-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Стили элементов внутри (копируем и адаптируем из about-info.css) */
+.home-token-details .detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(17, 17, 22, 0.7);
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  
+}
+
+.home-token-details .detail-item:hover {
+  background: rgba(24, 24, 30, 0.9);
+  transform: translateY(-3px);
+}
+
+.home-token-details .detail-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  background: rgba(184, 157, 88, 0.1);
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(184, 157, 88, 0.15);
+}
+
+.home-token-details .detail-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.home-token-details .detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.home-token-details .detail-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.home-token-details .detail-value {
+  font-size: 1rem; 
+  font-weight: 400;
+  color: #fff;
+}
+
+.home-token-details .contract-item {
+  grid-column: 1 / -1;
+}
+
+.home-token-details .contract-value-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.home-token-details .contract-address-text {
+  font-family: FiraCode;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #eee;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.home-token-details .copy-button {
+  background: rgba(184, 157, 88, 0.1);
+  border: 1px solid rgba(184, 157, 88, 0.2);
+  color: var(--color-primary);
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.home-token-details .copy-button:hover {
+  background-color: rgba(184, 157, 88, 0.2);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.home-token-details .copy-button svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+
+.home-token-details .copy-button .copy-tooltip {
+  font-size: 0.75rem;
+}
+
+.home-token-details .copy-button.copied {
+  background-color: var(--color-primary);
+  color: #000;
+  border-color: var(--color-primary);
+}
+
+/* Стили для дисклеймера */
+.home-disclaimer {
+  max-width: 650px;
+  margin: 2.5rem auto 0;
+  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Класс для запуска анимации появления */
+.home-disclaimer.reveal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-disclaimer p {
+  margin-bottom: 0;
+}
+
+/* Адаптивность для добавленных блоков */
+@media (max-width: 768px) {
+  .home-token-details {
+    max-width: 90%;
+    grid-template-columns: 1fr;
+  }
+
+  .home-token-details .contract-address-text {
+      font-size: 0.8rem;
+  }
+
+  .home-disclaimer {
+      max-width: 90%;
+      font-size: 0.8rem;
+  }
+
+  /* Делаем так, чтобы видео на мобильных устройствах было видно полностью */
+  /* .video-background .video-element { */
+  /*   object-fit: contain; */
+  /* } */
+} 
+
+@media (max-width: 480px) {
+    .home-token-details .contract-address-text {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .home-token-details .detail-item {
+        max-width: 75%;
+    }
+
+    .home-token-details .detail-text {
+        max-width: 82%;
+    }
+}

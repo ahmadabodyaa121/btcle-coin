@@ -1,0 +1,729 @@
+/* Стили для страницы Roadmap */
+
+/* Переменные фона (добавлены для фона) */
+:root {
+  --dark-bg-1: #0B0B0F;
+  --dark-bg-2: #13131A;
+  --accent-gold: #C5B483; /* Используйте ваш основной золотой, например #f7931a */
+  --accent-blue: #2E7DFF;
+  --text-light: #EAEAEA;
+  --text-medium: #A0A0B0;
+}
+
+.roadmap-container {
+  padding: 4rem 1.5rem;
+  /* تعديل 44 */
+  color: #292929; /* Добавляем стандартный цвет текста */
+  /* تعديل 45 */
+  background-color: #fff; /* Базовый темный фон */
+  position: relative; /* Нужно для псевдоэлементов */
+  z-index: 1; /* Чтобы контент был над фоном */
+}
+
+/* Фон страницы - стили из vision/outreach.css */
+.roadmap-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    z-index: -2;
+    opacity: 0.7;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 80%);
+    animation: bg-grid-subtle-move 60s linear infinite;
+}
+
+.roadmap-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  opacity: 0.8;
+}
+
+.roadmap-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.roadmap-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KICA8cGF0dGVybiBpZD0icGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGM0M5NzkiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgogIDwvcGF0dGVybj4KPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybildIiAvPgo8L3N2Zz4=');
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.roadmap-header h1 {
+  font-size: 3rem; /* text-5xl */
+  line-height: 1;
+  font-weight: 400; /* font-bold */
+  margin-bottom: 1rem;
+  position: relative;
+  /* تعديل 46 */
+  color: #292929;
+}
+
+.roadmap-header p {
+  font-size: 1.3rem; /* text-xl */
+  /* تعديل 47 */
+  color: #C5B483; /* text-btc-light/90 */
+  max-width: 42rem; /* max-w-2xl */
+  margin: 0 auto;
+  font-family: FiraCode; /* font-grotesk */
+  position: relative;
+}
+
+.roadmap-timeline {
+  max-width: 56rem; /* max-w-5xl */
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Убираем вертикальную линию */
+/* 
+.roadmap-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--color-primary-faded), var(--color-primary-dark));
+  border-radius: 2px;
+  z-index: 0;
+}
+*/
+
+/* Стилизация элементов таймлайна */
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rem; /* mb-24 */
+  opacity: 0;
+  transform: translateX(-20px); /* начальное смещение для анимации */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  position: relative;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Позиционирование четных и нечетных элементов */
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-item:nth-child(odd).visible {
+  transform: translateX(0);
+}
+
+.timeline-item:nth-child(even).visible {
+  transform: translateX(0);
+}
+
+.timeline-content-wrapper {
+  width: calc(50% - 2rem); /* w-[calc(50%-2rem)] */
+}
+
+.timeline-item:nth-child(odd) .timeline-content-wrapper {
+  text-align: right;
+  padding-right: 2rem; /* pr-8 */
+}
+
+.timeline-item:nth-child(even) .timeline-content-wrapper {
+  text-align: left;
+  padding-left: 2rem; /* pl-8 */
+}
+
+.timeline-card {
+  background-color: #292929; /* bg-black/80 */
+  border: 1px solid rgba(243, 201, 121, 0.2);
+   /* border-gold/20 */
+  border-radius: 0.75rem; /* rounded-lg */
+  padding: 1.5rem; /* p-6 */
+  backdrop-filter: blur(4px);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(243, 201, 121, 0.15);
+  border-color: rgba(243, 201, 121, 0.35);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  margin-bottom: 0.75rem; /* mb-3 */
+  color: var(--color-primary); /* text-gold */
+}
+
+.timeline-period {
+  font-weight: 600; /* font-semibold */
+  font-size: 1.125rem; /* text-lg */
+}
+
+.timeline-status-icon {
+  margin-left: auto; /* ml-auto */
+}
+
+.timeline-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 0.75rem; /* mb-3 */
+  color: #ffffff; /* text-white */
+}
+
+.timeline-description {
+  color: rgba(255, 255, 255, 0.9); /* text-btc-light/90 */
+  margin-bottom: 1rem; /* mb-4 */
+  line-height: 1.6;
+}
+
+.timeline-point-container {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, black, #292929); /* bg-gradient-to-br from-black to-gray-900 */
+  border-width: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+
+/* Стили для точки в зависимости от статуса */
+.timeline-point-container.status-completed {
+  border-color: #4ade80; /* border-green-400 */
+}
+.timeline-point-container.status-completed .timeline-point-icon {
+  color: #4ade80; /* text-green-400 */
+}
+
+.timeline-point-container.status-in-progress {
+  border-color: var(--color-primary); /* border-gold */
+  animation: pulse-border 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.timeline-point-container.status-in-progress .timeline-point-icon {
+  color: var(--color-primary); /* text-gold */
+}
+
+.timeline-point-container.status-upcoming {
+  border-color: #4b5563; /* border-gray-700 */
+}
+.timeline-point-container.status-upcoming .timeline-point-icon {
+  color: #9ca3af; /* text-gray-400 */
+}
+
+.timeline-spacer {
+  width: calc(50% - 2rem);
+}
+
+/* Анимация пульсации рамки */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: var(--color-primary);
+  }
+  50% {
+    border-color: #fef3c7; /* amber-100 */
+  }
+}
+
+/* Дополнительные стили для подсветки и масштабирования при скролле */
+.timeline-card.glow {
+  border-color: rgba(243, 201, 121, 0.4);
+  box-shadow: 0 0 15px 5px rgba(243, 201, 121, 0.2); /* shadow-gold shadow-lg */
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .roadmap-container {
+    padding: 2rem 1rem; /* Уменьшаем отступы */
+  }
+  
+  .roadmap-header h1 {
+    font-size: 2.25rem; /* Уменьшаем заголовок */
+  }
+
+  .roadmap-timeline::before {
+    left: 1.5rem; /* Сдвигаем линию немного от края */
+    transform: translateX(0);
+  }
+
+  .timeline-item {
+    flex-direction: row !important; 
+    transform: translateX(0); 
+    margin-bottom: 2.5rem; /* Уменьшаем отступ между элементами */
+    align-items: flex-start; /* Выравниваем по верху */
+  }
+
+  .timeline-item.visible {
+     transform: translateX(0);
+  }
+
+  .timeline-point-container {
+    margin-right: 0.75rem; /* Уменьшаем отступ справа от точки */
+    flex-shrink: 0;
+    width: 3rem; /* Уменьшаем размер точки */
+    height: 3rem; /* Уменьшаем размер точки */
+    border-width: 3px; /* Уменьшаем толщину рамки */
+    margin-top: 0.5rem; /* Небольшой отступ сверху для выравнивания с текстом */
+  }
+  
+  .timeline-point-container .timeline-point-icon svg {
+      width: 1.25rem; /* Уменьшаем иконку внутри точки */
+      height: 1.25rem;
+  }
+
+  .timeline-content-wrapper {
+    width: calc(100% - 3rem - 0.75rem); /* Занимает оставшееся место */
+    padding-left: 0.5rem; /* Уменьшаем отступ слева от карточки */
+    padding-right: 0;
+    text-align: left !important; 
+  }
+  
+  .timeline-card {
+      padding: 1rem; /* Уменьшаем внутренние отступы карточки */
+  }
+  
+  .timeline-title {
+      font-size: 1.25rem; /* Уменьшаем заголовок в карточке */
+  }
+  
+  .timeline-description {
+      font-size: 0.9rem; /* Уменьшаем текст описания */
+      margin-bottom: 0.5rem;
+  }
+
+  .timeline-spacer {
+    display: none;
+  }
+  
+  .home-button {
+    width: 3rem;
+    height: 3rem;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .home-button svg {
+      width: 1.25rem;
+      height: 1.25rem;
+  }
+} 
+
+/* Стили для модального окна деталей Roadmap */
+.roadmap-details-modal {
+  position: fixed;
+  inset: 0; /* top, right, bottom, left = 0 */
+  z-index: 1050; /* Выше большинства элементов */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+
+.roadmap-details-modal.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s linear 0s;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 10, 15, 0.85); /* Полупрозрачный темный фон */
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--dark-bg-2); /* Фон как у карточек или темнее */
+  border: 1px solid var(--accent-gold); /* Золотая рамка */
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  max-width: 800px; /* Макс. ширина */
+  width: 90%; /* Ширина на маленьких экранах */
+  max-height: 85vh; /* Макс. высота */
+  overflow-y: auto; /* Скролл, если контент не влезает */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1051;
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+.roadmap-details-modal.visible .modal-content {
+  transform: scale(1);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-medium);
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close-button:hover {
+  color: var(--text-light);
+  transform: rotate(90deg);
+}
+
+.modal-close-button svg {
+  width: 28px;
+  height: 28px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(243, 201, 121, 0.2);
+}
+
+.modal-status-icon svg {
+  width: 20px; /* Размер иконки статуса */
+  height: 20px;
+}
+.modal-status-icon .animate-pulse-icon svg { /* Если нужна анимация */
+  animation: pulse-icon 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-icon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.modal-period {
+  font-weight: 600;
+  color: var(--text-medium);
+}
+
+.modal-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin: 0;
+  flex-grow: 1; /* Занимает оставшееся место */
+}
+
+.modal-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+.modal-body h2, .modal-body h3 {
+  color: var(--accent-gold);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-body h2 {
+    font-size: 1.5rem;
+}
+
+.modal-body h3 {
+    font-size: 1.3rem;
+}
+
+.modal-body p {
+  margin-bottom: 1rem;
+}
+
+.modal-body ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-body ul ul {
+    list-style: circle;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-body li {
+  margin-bottom: 0.5rem;
+}
+
+.modal-body strong {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Класс для body при открытом модальном окне */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Указатель для кликабельных карточек */
+.timeline-card {
+  cursor: pointer;
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  .modal-body {
+    font-size: 0.95rem;
+  }
+  .modal-body h2 {
+    font-size: 1.3rem;
+  }
+   .modal-body h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Добавляем стили для иконки статуса In Progress */
+.modal-status-icon .icon-hourglass {
+  animation: pulse-icon 1.5s infinite ease-in-out;
+}
+
+/* Стили для блокировки скролла при открытой карточке */
+body.noscroll {
+  overflow: hidden;
+  /* Убираем padding-right, так как он может вызывать смещение контента */
+  /* padding-right: 17px; */
+}
+
+/* Оверлей для фона при развернутой карточке */
+.expanded-card-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: auto; /* Обеспечиваем, что оверлей принимает события мыши */
+}
+
+.expanded-card-overlay.visible {
+  opacity: 1;
+}
+
+/* Развернутая карточка */
+.expanded-card {
+  background-color: rgba(19, 19, 26, 0.95);
+  border: 1px solid rgba(243, 201, 121, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5),
+              0 0 30px 5px rgba(243, 201, 121, 0.1);
+  color: var(--text-light);
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: 90vh;
+  z-index: 1000; /* Убедимся, что карточка выше оверлея */
+  pointer-events: auto; /* Обеспечиваем, что карточка принимает события мыши */
+  will-change: transform, opacity; /* Оптимизация для анимации */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(243, 201, 121, 0.4) rgba(19, 19, 26, 0.8); /* Firefox */
+}
+
+/* Кастомный скроллбар для Webkit (Chrome, Safari, новый Edge) */
+.expanded-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.expanded-card::-webkit-scrollbar-track {
+  background-color: rgba(19, 19, 26, 0.8);
+  border-radius: 10px;
+}
+
+.expanded-card::-webkit-scrollbar-thumb {
+  background-color: rgba(243, 201, 121, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(19, 19, 26, 0.9);
+}
+
+.expanded-card::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(243, 201, 121, 0.6);
+}
+
+/* Улучшенные анимации для карточки */
+.expanded-card-content,
+.expanded-card-title,
+.expanded-card-header {
+  transition: opacity 0.35s ease-out;
+}
+
+/* Классы для плавного исчезновения контента карточки */
+.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.25s ease-out !important;
+}
+
+/* Анимация для закрывающейся карточки */
+.expanded-card.closing {
+  transform-origin: center;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Плавное появление/исчезновение оверлея */
+.expanded-card-overlay {
+  transition: opacity 0.45s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.expanded-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(243, 201, 121, 0.1);
+}
+
+.expanded-card-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.expanded-card-status .timeline-status-icon {
+  color: var(--accent-gold);
+}
+
+.expanded-card-status .timeline-period {
+  font-weight: 600;
+  color: var(--text-medium);
+}
+
+.expanded-card-close {
+  background: none;
+  border: none;
+  color: var(--text-medium);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.expanded-card-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.expanded-card-title {
+  font-size: 2rem;
+  margin: 1rem 0 1.5rem;
+  color: var(--accent-gold);
+  background: linear-gradient(to right, var(--accent-gold), #fde68a, var(--accent-gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.expanded-card-content {
+  line-height: 1.6;
+}
+
+.expanded-card-content h2 {
+  font-size: 1.6rem;
+  color: var(--accent-gold);
+  margin: 1.5rem 0 1rem;
+}
+
+.expanded-card-content p {
+  margin-bottom: 1rem;
+}
+
+.expanded-card-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.expanded-card-content ul ul {
+  list-style-type: circle;
+  margin: 0.5rem 0;
+}
+
+.expanded-card-content li {
+  margin-bottom: 0.5rem;
+}
+
+.expanded-card-content strong {
+  color: white;
+  font-weight: 600;
+}
+
+/* Адаптивные стили для развернутой карточки */
+@media (max-width: 768px) {
+  .expanded-card {
+    padding: 1.5rem;
+  }
+  
+  .expanded-card-title {
+    font-size: 1.5rem;
+    margin: 0.75rem 0 1rem;
+  }
+  
+  .expanded-card-content h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Удаляем неиспользуемые стили модального окна */
+.roadmap-details-modal,
+.modal-overlay,
+.modal-content,
+.modal-close-button,
+.modal-header,
+.modal-status-icon,
+.modal-period,
+.modal-title,
+.modal-body {
+  display: none;
+}
+
+/* Заменяем класс modal-open на noscroll */
+body.modal-open {
+  display: none;
+} 
+.timeline-card {
+  background-color: #ffffff;
+ 
+}
+.roadmap-header{
+  background-color: #fff !important;
+}

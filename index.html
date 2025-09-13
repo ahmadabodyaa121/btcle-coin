@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC Limited Edition</title>
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/loader.css">
+    <link rel="stylesheet" href="/css/bitcoin-model.css">
+    <link rel="stylesheet" href="/css/hero-section.css">
+    <link rel="stylesheet" href="/css/video-background.css">
+    <link rel="stylesheet" href="/css/whitepaper.css">
+    <link rel="stylesheet" href="/css/outreach.css">
+    <link rel="stylesheet" href="/css/vision.css">
+    <link rel="stylesheet" href="/css/pages/not-found.css">
+    <link rel="stylesheet" href="/css/pages/home.css">
+    <link rel="stylesheet" href="/css/pages/about-info.css">
+    <!-- Подключение шрифтов -->
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="BTCLE" />
+    <link rel="manifest" href="/images/favicon/site.webmanifest" />
+</head>
+<body class="bg-gradient">
+    <!-- Глобальный лоадер -->
+    <div class="loader-container" id="global-loader">
+        <div class="loader">
+            <img src="/images/loader.png" alt="Loading..." class="loader-image">
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header id="header"></header>
+
+        <!-- Main Content -->
+        <main id="main-content" style="height: 100vh;"></main>
+            <!-- Содержимое будет загружено динамически -->
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer" style="display: none;"></footer>
+    </div>
+
+    <!-- Скрипты -->
+    <script>
+        // Полифилл для поддержки ES модулей в старых браузерах
+        if (!('noModule' in HTMLScriptElement.prototype)) {
+            console.warn('Ваш браузер не поддерживает ES модули. Некоторые функции могут быть недоступны.');
+        }
+    </script>
+    <script src="/js/libs/router.js" type="module"></script>
+    <script type="module" src="/js/main.js"></script>
+
+    <!-- Fixed Logo -->
+    <div class="fixed-logo-container">
+        <a href="?" class="logo" data-navigate="">
+            <img src="/images/logo-main.png" alt="BTC Limited Edition Logo" class="logo-image">
+        </a>
+    </div>
+</body>
+</html> 

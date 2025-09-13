@@ -1,0 +1,606 @@
+/* Стили для страницы About */
+
+/* Переменные для новых цветов и градиентов */
+/* Удаляем локальные переменные, используем глобальные */
+
+/* Фон страницы - стили из whitepaper.css */
+.about-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    z-index: -2;
+    opacity: 0.7;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% -10%, black 40%, transparent 80%);
+    animation: bg-grid-subtle-move 60s linear infinite;
+}
+
+.about-container::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: radial-gradient(circle at 10% 20%, #252530 0%, transparent 30%), radial-gradient(circle at 90% 80%, rgba(46, 125, 255, 0.08) 0%, transparent 35%); */
+    z-index: -2;
+    opacity: 0.6;
+    animation: bg-glow-subtle-move 45s ease-in-out infinite alternate;
+}
+
+@keyframes bg-grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+.about-container {
+  margin: 0 auto;
+  padding: 120px 20px;
+  color: var(--text-light); /* Используем переменную из whitepaper */
+  position: relative;
+  z-index: 1; /* Контейнер должен быть выше псевдоэлементов */
+  /* تعديل 6 */
+  background-color: #fff; /* Возвращаем базовый фон контейнера */
+}
+
+.section-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Улучшенная типографика для заголовка - убираем transform */
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.1;
+  color:#292929 ;
+  letter-spacing: -0.02em;
+  background: #C5B483;
+
+  background-clip: text;
+  text-transform: uppercase;
+  /* transform: perspective(1000px) translateZ(0); - Убрано */
+  transition: transform 0.3s ease;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.section-title .highlight {
+  color:#000; /* Используем --color-primary */
+  display: inline-block;
+  position: relative;
+  font-weight: 500;
+  -webkit-text-fill-color: #000; /* Используем --color-primary */
+  text-shadow: 0 0 15px var(--about-accent-glow);
+}
+
+.section-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent); /* Используем --color-primary */
+  opacity: 0.8;
+  box-shadow: 0 0 10px var(--about-accent-glow);
+}
+
+.section-subtitle {
+
+}
+
+.section-subtitle h2 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #000; /* Используем --color-primary (было --about-secondary-gold) */
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-family: FiraCode;
+  letter-spacing: 0.02em;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  padding: 0 1.5rem;
+
+}
+
+/* Основной контент - интегрирован в фон, без карточек */
+.section-description {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: justify;
+  font-size: 1.15rem;
+  color: #292929;
+  line-height: 1.9;
+  padding: 1rem 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.section-description p {
+  margin-bottom: 1.8rem;
+}
+
+/* Стили для блоков истории */
+.story-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1200px; /* << Ограничиваем максимальную ширину */
+}
+
+.story-block {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  padding: 0 1.5rem;
+
+}
+
+.story-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-block p {
+  margin-bottom: 1rem;
+}
+
+.story-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Добавление иконок для разбивки текста */
+.story-block::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  box-shadow: 0 0 10px var(--about-accent-glow);
+}
+
+.story-block strong {
+  color: var(--color-primary); /* Используем --color-primary */
+  font-weight: 600;
+}
+
+.story-block em {
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Улучшенный блок с цитатой */
+.quote-block {
+  position: relative;
+  border-left: none;
+  padding: 2.5rem 2rem;
+  margin: 4rem 0;
+  background: linear-gradient(120deg, rgba(20, 20, 29, 0.7), rgba(30, 30, 45, 0.7));
+  border-radius: 2px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+  text-align: center;
+  overflow: hidden;
+}
+
+.quote-block::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 8rem;
+  color: var(--color-primary, rgba(184, 157, 88, 0.15)); /* Используем --color-primary */
+  font-family: FiraCode;
+  line-height: 1;
+}
+
+.quote-block::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  right: 0.5rem;
+  font-size: 8rem;
+  color: var(--color-primary, rgba(184, 157, 88, 0.15)); /* Используем --color-primary */
+  font-family: FiraCode;
+  line-height: 1;
+}
+
+.quote-block blockquote {
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--about-text-light);
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+  font-family: FiraCode;
+}
+
+.quote-block strong {
+  color: var(--color-primary); /* Используем --color-primary */
+  text-shadow: 0 0 10px var(--about-accent-glow);
+  font-weight: 600;
+}
+
+/* Улучшенный выделенный блок в стиле whitepaper */
+.highlight-box {
+  background: linear-gradient(120deg, rgba(20, 20, 29, 0.90), rgba(30, 30, 45, 0.80));
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15)); /* Используем --color-primary */
+  padding: 4rem 3rem;
+  margin: 4rem 0 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 80% 20%, var(--color-primary, rgba(184, 157, 88, 0.15)), transparent 70%),
+    radial-gradient(ellipse at 20% 80%, var(--color-primary, rgba(184, 157, 88, 0.1)), transparent 70%); /* Используем --color-primary */
+  opacity: 0.8;
+  z-index: -1;
+  transform: rotate(-15deg);
+  pointer-events: none;
+  animation: subtle-float 15s ease-in-out infinite alternate;
+}
+
+.highlight-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom right, var(--color-primary, rgba(184, 157, 88, 0.05)), transparent 60%); /* Используем --color-primary */
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.highlight-box h3 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: var(--about-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(120deg, var(--about-text-light), var(--color-primary)); /* Используем --color-primary */
+  -webkit-background-clip: text;
+
+  background-clip: text;
+  text-align: center;
+}
+
+.highlight-box p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #e6e1d5;
+  text-align: center;
+}
+
+.highlight-box p:last-child {
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-primary); /* Используем --color-primary */
+  text-shadow: 0 0 10px var(--about-accent-glow);
+  font-family: FiraCode;
+}
+
+.highlight-box .pill-accent {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(120deg, rgba(30, 30, 40, 0.8), rgba(40, 40, 55, 0.8));
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.3)); /* Используем --color-primary */
+  border-radius: 50px;
+  margin: 0 0.5rem 0.7rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary); /* Используем --color-primary */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 0 10px rgba(246, 200, 102, 0.05);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.highlight-box .pill-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 15px var(--about-accent-glow); /* Оставим локальный glow? */
+  border-color: var(--color-primary, rgba(184, 157, 88, 0.5)); /* Используем --color-primary */
+  color: var(--about-text-light);
+}
+
+@keyframes subtle-float {
+  0% {
+    transform: rotate(-15deg) translate(0, 0);
+  }
+  100% {
+    transform: rotate(-15deg) translate(10px, -10px);
+  }
+}
+
+/* Удаляем сетку карточек и интегрируем их содержимое в основной контент */
+.about-grid {
+  display: none;
+}
+
+.about-card {
+  display: none;
+}
+
+/* Выделение текста */
+.highlight-text {
+  color: var(--color-primary); /* Используем --color-primary */
+  font-weight: 600;
+  position: relative;
+  padding: 0 5px;
+  z-index: 1;
+}
+
+.highlight-text::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--color-primary); /* Используем --color-primary */
+  opacity: 0.15;
+  border-radius: 2px;
+  z-index: -1;
+}
+
+/* Кнопка возврата на главную */
+.home-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.6), rgba(20, 20, 29, 0.8));
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.15)); /* Используем --color-primary */
+  border-radius: 50%;
+  color: var(--color-primary); /* Используем --color-primary */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.home-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-button:hover {
+  background: linear-gradient(135deg, rgba(40, 40, 55, 0.7), rgba(25, 25, 35, 0.9));
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--about-accent-glow); /* Оставим локальный glow? */
+  border-color: var(--color-primary, rgba(184, 157, 88, 0.3)); /* Используем --color-primary */
+}
+
+.home-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-primary); /* Используем --color-primary */
+  transition: all 0.3s ease;
+}
+
+.home-button:hover svg {
+  stroke: #C5B483;
+}
+
+.principles-list li {
+    display: flex;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Адаптивные стили */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 4rem;
+  }
+  
+  .section-subtitle h2 {
+    font-size: 1.8rem;
+  }
+  
+  .quote-block blockquote {
+    font-size: 1.8rem;
+  }
+  
+  .highlight-box h3 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 60px 20px;
+  }
+  
+  .section-title {
+    font-size: 3.5rem;
+  }
+  
+  .section-subtitle h2 {
+    font-size: 1.6rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+    padding: 0;
+  }
+  
+  .quote-block {
+    padding: 2rem 1.5rem;
+  }
+  
+  .quote-block blockquote {
+    font-size: 1.6rem;
+  }
+  
+  .highlight-box {
+    padding: 3rem 2rem;
+  }
+  
+  .highlight-box h3 {
+    font-size: 2.5rem;
+  }
+  
+  .highlight-box p {
+    font-size: 1.1rem;
+  }
+  
+  .home-button {
+    bottom: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .home-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 80px 15px;
+  }
+
+  .token-details-section {
+    margin-top: 3vh;
+  }
+  
+  .section-title {
+    font-size: 2.8rem;
+  }
+  
+  .section-subtitle h2 {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .section-description {
+    font-size: 0.95rem;
+  }
+  
+  .quote-block {
+    padding: 1.5rem 1rem;
+    margin: 2.5rem 0;
+  }
+  
+  .quote-block::before {
+    font-size: 5rem;
+  }
+  
+  .quote-block blockquote {
+    font-size: 1.3rem;
+  }
+  
+  .highlight-box {
+    padding: 2.5rem 1.5rem;
+    margin: 2.5rem 0 1rem;
+  }
+  
+  .highlight-box h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .highlight-box p {
+    font-size: 1rem;
+  }
+  
+  .story-blocks {
+    gap: 2rem;
+  }
+  
+  .home-button {
+    bottom: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .home-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+    .home-token-details .contract-address-text {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .home-token-details .detail-item {
+        max-width: 75%;
+    }
+
+    .home-token-details .detail-text {
+        max-width: 82%;
+    }
+}

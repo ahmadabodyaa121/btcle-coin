@@ -1,0 +1,372 @@
+/* Основные стили сайта BTC Limited Edition */
+
+:root {
+    /* Цвета */
+    --color-primary: #C5B483;
+    --color-gold-luxury: #b89d58;
+    --color-secondary: #1a1e2d;
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-background: #000000;
+    --color-background-secondary: #111111;
+    --color-border: #333333;
+    
+    /* Размеры */
+    --container-width: 1280px;
+    --header-height: 80px;
+    
+    /* Переходы */
+    --transition-default: all 0.3s ease;
+}
+
+/* Глобальные стили */
+body {
+    color: var(--color-text);
+    background: linear-gradient(to bottom, var(--color-background), var(--color-background-secondary));
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Контейнеры */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Типографика */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: var(--transition-default);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.btn-primary:hover {
+    background-color: #e68a19;
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background-color: #252a3d;
+}
+
+/* Утилиты */
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Адаптивность */
+@media (max-width: 1280px) {
+    h1 {
+        font-size: 3rem;
+    }
+    
+    h2 {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Компоненты */
+/* Стили для каждого компонента будут размещены в отдельных CSS файлах */
+
+/* Анимации для смены страниц */
+#main-content {
+  transition: opacity 0.3s ease-in-out; /* Длительность = FADE_DURATION из router.js */
+}
+
+#main-content.page-fade-out {
+  opacity: 0;
+}
+
+#main-content.page-fade-in {
+  opacity: 1;
+}
+
+/* Можно добавить стили для начального состояния (невидимый до первой загрузки) */
+/* Но router.js теперь управляет этим через inline style opacity=0 */
+/* 
+#main-content:not(.page-fade-in) {
+  opacity: 0; 
+}
+*/ 
+
+/* Стили для фиксированного логотипа в углу */
+.fixed-logo-container {
+    position: fixed;
+    bottom: 20px; /* Отступ снизу */
+    right: 20px; /* Отступ справа */
+    z-index: 1000; /* Выше остального контента */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Скрыто по умолчанию */
+    transform: translateY(10px); /* Немного сдвинуто для анимации */
+    animation: fade-in-logo 0.5s ease 1s forwards; /* Анимация появления с задержкой */
+  }
+  
+  .fixed-logo-container .logo {
+    display: block; /* Убедимся, что ссылка - блок */
+    height: 40px; /* Или желаемая высота */
+  }
+  
+  .fixed-logo-container .logo-image {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+  
+  /* Анимация появления логотипа */
+  @keyframes fade-in-logo {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Можно добавить стили для hover-эффекта, если нужно */
+  .fixed-logo-container:hover {
+    opacity: 0.8; /* Пример */
+  }
+  
+  /* --- Fixed Logo Hover/Active Effect --- */
+  .fixed-logo-container .logo {
+    display: inline-block; /* Чтобы transform работал корректно */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Плавный переход */
+  }
+  
+  .fixed-logo-container .logo:hover {
+    transform: scale(1.1); /* Небольшое увеличение при наведении */
+    opacity: 0.85; /* Небольшое осветление */
+  }
+  
+  .fixed-logo-container .logo:active {
+    transform: scale(1.05); /* Чуть меньше увеличение при клике */
+    opacity: 0.7;
+  } 
+
+  .home-button {
+    display: none !important;
+  }
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+  .fixed-logo-container {
+    display: none; /* Скрываем логотип в правом нижнем углу на мобильных */
+  }
+}
+
+.fixed-logo-container {
+     padding: 5px 10px;
+
+}
+/************************/
+
+.section-title .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #000000, transparent) !important;
+    opacity: 0.8;
+    box-shadow: 0 0 10px var(--about-accent-glow);
+}
+*{
+    box-shadow: none !important;
+    border: none !important;
+}
+canvas{
+    box-shadow: none !important;
+
+}
+.highlight-text {
+    color: #000000 !important;
+  
+}
+li{
+    background: none !important;
+}
+.vesting-mechanics{
+    background: none !important;
+
+}
+span{
+    color: #111111 !important;
+}
+p{
+    color: #111111 !important;
+}
+.vesting-toggle {
+    width: auto !important;
+   
+}
+.timeline-card{
+    box-shadow: none !important;
+    border: none !important;
+}
+#view-wp-summary-btn{
+    background-color: #a0a0a0 !important;
+}
+#view-wp-summary-btn:active{
+    background-color: #a0a0a0 !important;
+}
+.card-icon{
+    background-color: #d1d1d1 !important;
+}
+ svg{
+    color: #fff;
+}
+.feature-icon{
+    background-color: #d1d1d1 !important;
+
+}
+.benefit-icon{
+    background-color: #000 !important;
+
+}
+.market-icon{
+    background-color: #000 !important;
+
+}
+.benefit-counter{
+    color: #000000;
+}
+.market-value{
+    color: #565656 !important;
+}
+.timeline-year{
+    background-color: #000 !important;
+color: #fff !important;
+}
+.timeline-marker {
+ 
+    background: #a2a2a2 !important;
+   
+}
+.timeline::before {
+   
+    background: linear-gradient(to bottom, rgba(123, 123, 123, 0.7), rgba(20, 20, 20, 0.5), rgba(243, 201, 121, 0.1)) !important;
+   
+}
+.point-icon-wrapper{
+    background-color: #252a3d !important;
+}

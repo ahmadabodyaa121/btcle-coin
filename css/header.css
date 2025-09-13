@@ -1,0 +1,363 @@
+/* Стили для шапки сайта */
+
+/* Правило для скрытия хедера */
+#header.header-hidden {
+  /* display: none; */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.header-scrolled {
+  background-color: #fff;
+  backdrop-filter: blur(8px);
+  border-bottom: 0.5px solid rgba(184, 157, 88, 0.15);
+}
+
+.header-transparent {
+  /* تعديل 7 */
+  background-color: #ffffff00;
+}
+
+.header-container {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  min-height: var(--header-height, 60px);
+  display: flex;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Логотип */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 40px;
+}
+
+/* Новые стили для изображения логотипа */
+.logo-image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Навигация для десктопа */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* تعديل 4 */
+  color: #9c9c9c;
+  transition: var(--transition-default);
+  position: relative;
+  padding-bottom: 4px;
+  overflow: hidden;
+}
+
+.nav-link:hover {
+  /* تعديل 5 */
+  color: #838383;
+}
+
+/* Линия под ссылкой */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #9c9c9c;
+  transform: translateX(-101%);
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover::after {
+  transform: translateX(0);
+}
+
+.nav-item {
+  margin: 0 1.5rem;
+}
+
+/* Выпадающее меню */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dropdown-toggle .chevron {
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 12rem;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid var(--color-primary, rgba(184, 157, 88, 0.2));
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 0.5rem;
+}
+
+.dropdown-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #292929;
+  transition: var(--transition-default);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(115, 115, 115, 0.213);
+  color: rgb(115, 115, 115);
+
+}
+
+/* Мобильное меню */
+.mobile-menu-toggle {
+  display: block;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-primary, rgba(184, 157, 88, 0.2));
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.mobile-menu.active {
+  display: block;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  overflow: hidden;
+}
+
+.mobile-nav-item {
+  padding: 0.75rem 1.5rem;
+  color: white;
+  transition: var(--transition-default);
+}
+
+.mobile-nav-item:hover {
+  background-color: rgba(184, 157, 88, 0.1);
+  color: var(--color-primary);
+}
+
+.mobile-dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-dropdown-toggle .chevron {
+  transition: transform 0.3s ease;
+}
+
+.mobile-dropdown-toggle.active .chevron {
+  transform: rotate(180deg);
+}
+
+.mobile-dropdown-menu {
+  display: none; /* Это свойство скрывает меню по умолчанию */
+  background-color: rgba(184, 157, 88, 0.05);
+  padding-left: 1rem;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mobile-dropdown-menu.active {
+  display: flex; /* Это свойство показывает меню, когда оно активно */
+}
+
+.mobile-dropdown-menu .mobile-nav-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Мобильное выпадающее меню Connect */
+
+/* Кнопка "Домой" в мобильном хедере (по умолчанию скрыта) */
+.mobile-header-home-logo {
+  display: none; 
+  height: 30px; /* Адаптированный размер для хедера */
+  line-height: 0; /* Убираем возможную высоту строки, если ссылка пустая */
+}
+
+.mobile-header-home-logo .logo-image {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* Медиа-запросы */
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  #mobile-menu-toggle {
+    display: block;
+    order: -1; /* Бургер слева */
+  }
+
+  .mobile-header-home-logo {
+    display: block; /* Показать кнопку "домой" в мобильном хедере */
+    /* order: 1; /* Можно не указывать, т.к. space-between должен отработать */
+  }
+  
+  .header-content {
+      justify-content: space-between;
+      width: 100%;
+      display: flex; /* Убедимся, что это flex-контейнер */
+      align-items: center; /* Для вертикального выравнивания элементов */
+  }
+  
+  .header-container {
+      padding: 0.5rem 1rem;
+  }
+
+  .mobile-menu {
+    backdrop-filter: blur(1px);
+    background-color: transparent;
+    border-bottom: 0px solid transparent;
+  }
+
+  #mobile-explore-toggle svg {
+    margin-left: 15px;
+  }
+
+  .mobile-dropdown-toggle {
+    justify-content: start;
+  }
+
+  #mobile-connect-toggle svg {
+    margin-left: 9px;
+  }
+}
+
+#main-header, .header {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#main-header.visible, .header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Общие стили для header */
+header {
+    position: relative;
+    z-index: 999;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Стили для "прилипшего" хедера */
+header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    background-color: rgba(11, 11, 15, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid rgba(184, 157, 88, 0.15);
+}
+
+header.sticky .logo {
+    height: 30px;
+}
+
+header.sticky nav ul {
+}
+
+/* Кнопка мобильного меню - УДАЛЯЕМ ЭТО ПОВТОРНОЕ ПРАВИЛО */
+/* 
+#mobile-menu-toggle {
+  display: none; 
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 110;
+} 
+*/ 

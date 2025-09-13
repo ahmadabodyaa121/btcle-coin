@@ -1,0 +1,426 @@
+/* Styles for the Why BTCLE page - Redesigned */
+:root {
+    --why-color-primary: #908f8f; /* Gold */
+    --why-color-background: #0B0B0F; /* Dark background similar to tokenomics */
+    --why-color-text: #EAEAEA; /* Light text */
+    --why-color-text-secondary: #b0b0b0; /* Slightly dimmer text */
+    --why-color-icon-bg: rgba(197, 180, 131, 0.08);
+    --why-border-color: rgba(197, 180, 131, 0.2);
+    --why-section-bg-subtle: rgba(255, 255, 255, 0.02); /* Very subtle bg for sections */
+}
+
+.why-btcle-container {
+    color: var(--why-color-text);
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    padding: 80px 20px 60px; /* Adjusted padding */
+    overflow: hidden; /* Prevent pseudo-elements overflow */
+    /* تعديل 37 */
+    background-color: #fff; /* Dark base background */
+    /* Remove card-like styling */
+    /* max-width, margin-auto, background-color, border-radius, box-shadow removed */
+}
+
+/* Background effects similar to tokenomics */
+.why-btcle-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 2.5rem 2.5rem; /* Adjusted grid size */
+    z-index: -2;
+    opacity: 0.6;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 80%);
+    animation: bg-grid-subtle-move 70s linear infinite;
+}
+
+.why-btcle-container::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(197, 180, 131, 0.06) 0%, transparent 35%), radial-gradient(circle at 80% 70%, rgba(46, 125, 255, 0.05) 0%, transparent 40%);
+    z-index: -2;
+    opacity: 0.7;
+    animation: bg-glow-subtle-move 50s ease-in-out infinite alternate;
+}
+
+/* Reusing animations from tokenomics */
+@keyframes bg-grid-subtle-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+@keyframes bg-glow-subtle-move {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Hero Section */
+.why-btcle-hero {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative; /* For particles */
+    padding: 20px 0;
+}
+
+/* Add particles container */
+.why-btcle-hero .particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1; /* Behind text */
+}
+
+.why-btcle-hero .particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(197, 180, 131, 0.2); /* Subtle gold particles */
+  pointer-events: none;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(calc(var(--x-drift, 0) * 1px), calc(var(--y-drift, 0) * 1px)) scale(1.1); opacity: 0.6; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+}
+
+.why-btcle-hero h1.section-title {
+    /* تعديل 37 */
+    color: #292929;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.why-btcle-hero .highlight {
+    /* تعديل 38 */
+    color: #C5B483;
+    /* Maybe a subtle effect later */
+}
+
+.why-btcle-subtitle {
+    font-size: 1.3rem;
+    /* تعديل 39 */
+    color: #292929;
+    margin-bottom: 0;
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Intro Section - Styled as Disclaimer */
+.why-btcle-intro {
+    margin: 0 auto 60px auto;
+    max-width: 800px;
+    /* border-left: 4px solid var(--why-color-primary); */ /* Removed */
+    border: 1px solid var(--why-border-color); /* Thin border all around */
+    padding: 20px 25px; /* Adjusted padding */
+    /* background: var(--why-section-bg-subtle); */ /* Removed background */
+    /* تعديل 40 */
+    background-color:#29292909 ; /* Slightly different subtle bg, less contrast */
+    border-radius: 8px; /* Consistent radius */
+    /* Removed box-shadow implicitly as it wasn't there */
+}
+
+.why-btcle-intro p {
+    font-size: 1rem; /* Slightly smaller */
+    line-height: 1.7;
+    margin-bottom: 10px;
+    /* تعديل 43 */
+    color: #292929; /* Use secondary color for disclaimer feel */
+}
+
+.why-btcle-intro p:last-child {
+    margin-bottom: 0;
+}
+
+/* Points Section - Redesigned (No cards) */
+.why-btcle-points {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Increased gap between points */
+    max-width: 900px;
+    margin: 0 auto; /* Center the points section */
+}
+
+/* Individual Point Styling */
+.why-point {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--why-border-color);
+    /* Removed card background/border/shadow */
+}
+
+.why-point:last-child {
+    border-bottom: none;
+}
+
+/* Icon styling */
+.point-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background-color: var(--why-color-icon-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--why-border-color);
+}
+
+.point-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--why-color-primary);
+    stroke-width: 1.5; /* Thinner stroke maybe */
+}
+
+/* Content styling within a point */
+.point-content h2 {
+    color: var(--why-color-primary);
+    font-size: 1.8rem;
+    margin-top: 5px; /* Align with icon */
+    margin-bottom: 8px;
+    font-weight: 600;
+    /* Removed border from H2 */
+}
+
+.point-content h3 {
+    font-size: 1.2rem;
+    color: var(--why-color-text-secondary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.point-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    /* تعديل 42 */
+    color: #292929;
+    text-align: left; /* Justify might look messy */
+}
+
+/* Conclusion Section */
+.why-btcle-conclusion {
+    text-align: center;
+    margin: 70px auto 0 auto; /* Center and add top margin */
+    padding-top: 40px;
+    max-width: 700px;
+    border-top: 1px solid var(--why-border-color);
+}
+
+.why-btcle-conclusion p {
+    font-size: 1.2rem;
+    color: var(--why-color-primary);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Base styles for animations (applied by JS via classList.add) */
+.fade-in,
+.fade-in-up {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; /* Optimization */
+}
+
+.fade-in {
+    transform: translateY(10px);
+}
+
+.fade-in-up {
+    transform: translateY(30px); /* Increased initial offset */
+}
+
+/* Visible state for animations */
+.fade-in.visible,
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Home button positioning (ensure base styles exist in main.css or tokenomics.css) */
+.home-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(197, 180, 131, 0.1);
+    border: 1px solid var(--why-border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--why-color-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+    z-index: 1001;
+    backdrop-filter: blur(5px);
+}
+
+.home-button.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.home-button:hover {
+    background: rgba(197, 180, 131, 0.2);
+    transform: scale(1.05);
+}
+
+.home-button svg {
+    stroke: var(--why-color-primary);
+    transition: stroke 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .why-btcle-container {
+        padding: 60px 15px 40px;
+    }
+
+    .why-btcle-hero h1.section-title {
+        font-size: 2.6rem;
+    }
+
+    .why-btcle-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .why-btcle-intro {
+        padding: 15px 0 15px 20px;
+        margin-bottom: 50px;
+    }
+
+    .why-btcle-intro p {
+        font-size: 1rem;
+    }
+
+    .why-btcle-points {
+        gap: 40px;
+    }
+
+    .why-point {
+        flex-direction: column; /* Stack icon and content */
+        align-items: center; /* Center items */
+        text-align: center; /* Center text */
+        gap: 20px;
+        padding: 25px 0;
+    }
+
+    .point-icon-wrapper {
+        width: 55px;
+        height: 55px;
+    }
+
+    .point-icon-wrapper svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .point-content h2 {
+        font-size: 1.6rem;
+        margin-top: 0;
+    }
+    .point-content h3 {
+        font-size: 1.1rem;
+    }
+    .point-content p {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .why-btcle-conclusion p {
+        font-size: 1.2rem;
+    }
+
+    .home-button {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-btcle-container {
+        padding: 50px 10px 30px;
+    }
+
+     .why-btcle-hero h1.section-title {
+        font-size: 2.2rem;
+    }
+
+    .why-btcle-subtitle {
+        font-size: 1rem;
+    }
+
+    .why-btcle-intro {
+        padding: 10px 0 10px 15px;
+        margin-bottom: 40px;
+    }
+
+     .why-btcle-intro p {
+        font-size: 0.95rem;
+    }
+
+    .why-point {
+        padding: 20px 0;
+    }
+
+    .point-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+
+    .point-icon-wrapper svg {
+        width: 24px;
+        height: 24px;
+    }
+
+     .point-content h2 {
+        font-size: 1.4rem;
+    }
+     .point-content h3 {
+        font-size: 1rem;
+    }
+    .point-content p {
+        font-size: 0.9rem;
+    }
+
+    .why-btcle-conclusion {
+        margin-top: 50px;
+        padding-top: 30px;
+    }
+
+    .why-btcle-conclusion p {
+        font-size: 1.1rem;
+    }
+} 
+.why-btcle-hero .highlight {
+    color: #000000 !important;
+  }
